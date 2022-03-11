@@ -21,7 +21,7 @@ let data;
 // 篩選渲染資料位置
 let showData=[];
 
-// axios 套件將外部資料導入
+/* global axios */
 axios.get(url)
     .then(function(res) {
       data=res.data.filter((a)=>a.作物名稱);
@@ -29,15 +29,11 @@ axios.get(url)
     });
 
 
-/** 觸發按鈕篩選
- * @param {Event} event
- */
+/** 觸發按鈕篩選 */
 function filterCategory(e) {
-  let category='';
   if (e.target.nodeName=='BUTTON') {
-    category=e.target.dataset.category;
     showData=data.filter((i)=>{
-      return i.種類代碼==category;
+      return i.種類代碼==e.target.dataset.category;
     });
     renderData();
   } else {
