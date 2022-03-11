@@ -38,22 +38,26 @@ function filterCategory(e) {
     showData=data.filter((i)=>{
       return i.種類代碼==category;
     });
-    // TODO: 之後拆成 renderData 函式
-    let str='';
-    showData.forEach((i, index)=>{
-      const content='<tr><td>' + i.作物名稱+
-      '</td><td>' + i.市場名稱+
-      '</td><td>' + i.上價+
-      '</td><td>' + i.中價+
-      '</td><td>' + i.下價+
-      '</td><td>' + i.平均價+
-      '</td><td>' + i.交易量+
-      '</td></tr>';
-      str+=content;
-    });
-    table.innerHTML=str;
+    renderData(i);
   } else {
     return;
   }
 }
 
+function renderData(data) {
+  let str='';
+      data.forEach((b, index)=>{
+        const content=
+          `<tr>
+            <td>${b.作物名稱}</td>
+            <td>${b.市場名稱}</td>
+            <td>${b.上價}</td>
+            <td>${b.中價}</td>
+            <td>${b.下價}</td>
+            <td>${b.平均價}</td>
+            <td>${b.交易量}</td>
+          </tr>`;
+        str+=content;
+      });
+      table.innerHTML=str;
+};
